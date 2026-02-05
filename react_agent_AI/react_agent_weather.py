@@ -1,16 +1,16 @@
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
-from langchain_classic.tools import tool  # <-- fix here
+from langchain_classic.tools import tool
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os
 
 
-# Load OpenAI API key
+# OpenAI API key
 load_dotenv()
 api_key = os.environ.get("OPENAI_API_KEY")
 
-# Hardcoded weather data
+# Hardcoded weather data for the cities that show up on the execution
 Weather_database = {
     "Delhi": {"temperature": 15, "condition": "cloudy", "humidity": 70, "Wind_Speed": 18, "AQI": "Severe"},
     "Mumbai": {"temperature": 35, "condition": "Sunny", "humidity": 50, "Wind_Speed": 20, "AQI": "Satisfactory"},
@@ -42,7 +42,7 @@ def get_weather(city: str) -> str:
     )
 
 
-# Initialize LLM
+# Details of the LLM used 
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, max_tokens=200)
 
 # Prompt template
